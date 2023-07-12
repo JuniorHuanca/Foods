@@ -1,11 +1,11 @@
-import React from 'react'
+import { IFoodAPI } from "@/shared/types";
 
-type Props = {}
+type Props = {
+  food: IFoodAPI;
+};
 
-const Card = (props: Props) => {
-  return (
-    <div>Card</div>
-  )
-}
+const Card = ({ food }: Props) => {
+  return <div>{food.title}</div>;
+};
 
-export default Card
+export default Card;
