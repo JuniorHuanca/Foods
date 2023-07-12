@@ -26,13 +26,13 @@ const Products = (props: Props) => {
     })();
 
     return () => {
-      dispatch(cleanUpProducts());
+      // dispatch(cleanUpProducts());
     };
   }, []);
   console.log(products.length);
   return (
     <Layout>
-      <div>
+      <div className="flex flex-wrap justify-center gap-4">
         {products.map((e, index) => (
           <Card food={e} key={index} />
         ))}

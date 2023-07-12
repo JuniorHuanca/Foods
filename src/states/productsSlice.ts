@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getProductsByApi } from "./productsApi";
-import { EStateGeneric } from "@/shared/types";
+import { EStateGeneric, IFoodAPI } from "@/shared/types";
 import { RootState } from "./store";
 
 export const getAllProducts = createAsyncThunk(
@@ -15,11 +15,17 @@ export const getAllProducts = createAsyncThunk(
   }
 );
 
+type typesState = {
+  products: IFoodAPI[];
+  filters: [];
+  allProductsStatus: EStateGeneric;
+};
+
 const initialState = {
   products: [],
   filters: [],
   allProductsStatus: EStateGeneric.IDLE,
-};
+} as typesState;
 
 const productsSlice = createSlice({
   name: "products",

@@ -1,9 +1,9 @@
-export const EStateGeneric = {
-  IDLE: "idle",
-  SUCCEEDED: "succeeded",
-  PENDING: "pending",
-  FAILED: "failed",
-};
+export enum EStateGeneric {
+  IDLE = "idle",
+  SUCCEEDED = "succeeded",
+  PENDING = "pending",
+  FAILED = "failed",
+}
 
 export interface IFoodAPI {
   vegetarian: boolean;
