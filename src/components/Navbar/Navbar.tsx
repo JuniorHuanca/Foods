@@ -1,5 +1,7 @@
-"use client"
+"use client";
+import Link from "next/link";
 import { useState } from "react";
+import ModeSelector from "../ModeSelector";
 
 type Props = {};
 
@@ -13,71 +15,40 @@ const Navbar = (props: Props) => {
   return (
     <nav className="bg-gray-800 h-[10vh]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div className="flex items-center justify-between h-full">
-          <div className="flex items-center">
+        <div className="flex items-center justify-between h-full w-full">
+          <div className="flex flex-1 justify-between items-center">
             <div className="flex-shrink-0">
-              <a href="#" className="text-white font-bold text-lg">
-                Mi Sitio
-              </a>
+              <Link href="/" className="text-white font-bold text-lg">
+                SmartEats
+              </Link>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Inicio
-                </a>
-                <a
-                  href="#"
+                  Home
+                </Link>
+                <Link
+                  href="/products"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Conóceme
-                </a>
-                <a
-                  href="#"
+                  Products
+                </Link>
+                <Link
+                  href="/me"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Habilidades blandas
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Habilidades técnicas
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Proyectos
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Contáctame
-                </a>
+                  About Me
+                </Link>
               </div>
             </div>
           </div>
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
               <div className="relative">
-                <select className="block appearance-none bg-transparent border-none text-white pl-3 pr-8 sm:text-sm sm:leading-5">
-                  <option>Español</option>
-                  <option>Inglés</option>
-                  <option>Francés</option>
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-300">
-                  <svg
-                    className="h-4 w-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path fillRule="evenodd" d="M10 12l-6-6h12l-6 6z" />
-                  </svg>
-                </div>
+                <ModeSelector />
               </div>
             </div>
           </div>
@@ -130,42 +101,24 @@ const Navbar = (props: Props) => {
       {/* Menu open: "block", Menu closed: "hidden" */}
       <div className={`md:hidden ${isMobileMenuOpen ? "block" : "hidden"}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Inicio
-          </a>
-          <a
-            href="#"
+            Home
+          </Link>
+          <Link
+            href="/products"
             className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Conóceme
-          </a>
-          <a
-            href="#"
+            Products
+          </Link>
+          <Link
+            href="/me"
             className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Habilidades blandas
-          </a>
-          <a
-            href="#"
-            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            Habilidades técnicas
-          </a>
-          <a
-            href="#"
-            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            Proyectos
-          </a>
-          <a
-            href="#"
-            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            Contáctame
-          </a>
+            About Me
+          </Link>
         </div>
         <div className="pt-4 pb-3 border-t border-gray-700">
           <div className="flex items-center px-5 sm:px-6">
@@ -184,13 +137,7 @@ const Navbar = (props: Props) => {
                 />
               </svg>
             </div>
-            <div className="ml-3">
-              <select className="block appearance-none bg-transparent border-none text-white pl-3 pr-3 py-2 rounded-md text-base font-medium">
-                <option>Español</option>
-                <option>Inglés</option>
-                <option>Francés</option>
-              </select>
-            </div>
+            <ModeSelector />
           </div>
         </div>
       </div>
