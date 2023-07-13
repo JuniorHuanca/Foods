@@ -7,9 +7,9 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full bg-pattner bg-repeat bg-contain">
       <Navbar />
-      <div className="min-h-[80vh] bg-pattner bg-repeat bg-contain">{children}</div>
+      <div className="min-h-[80vh]">{children}</div>
       <Footer />
     </div>
   );

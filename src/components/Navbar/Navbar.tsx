@@ -13,12 +13,12 @@ const Navbar = (props: Props) => {
   };
 
   return (
-    <nav className="bg-gray-800 h-[10vh]">
+    <nav className="h-[10vh] bg-black/50 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full w-full">
           <div className="flex flex-1 justify-between items-center">
             <div className="flex-shrink-0">
-              <Link href="/" className="text-white font-bold text-lg">
+              <Link href="/" className=" font-bold text-lg">
                 SmartEats
               </Link>
             </div>
@@ -26,19 +26,19 @@ const Navbar = (props: Props) => {
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
                   href="/"
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Home
                 </Link>
                 <Link
                   href="/products"
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Products
                 </Link>
                 <Link
                   href="/me"
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="px-3 py-2 rounded-md text-sm font-medium"
                 >
                   About Me
                 </Link>
@@ -55,7 +55,7 @@ const Navbar = (props: Props) => {
           <div className="-mr-2 flex md:hidden">
             <button
               type="button"
-              className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
               aria-expanded={isMobileMenuOpen ? "true" : "false"}
               onClick={toggleMobileMenu}
             >
@@ -103,19 +103,19 @@ const Navbar = (props: Props) => {
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <Link
             href="/"
-            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="block px-3 py-2 rounded-md text-base font-medium"
           >
             Home
           </Link>
           <Link
             href="/products"
-            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="block px-3 py-2 rounded-md text-base font-medium"
           >
             Products
           </Link>
           <Link
             href="/me"
-            className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="block px-3 py-2 rounded-md text-base font-medium"
           >
             About Me
           </Link>
