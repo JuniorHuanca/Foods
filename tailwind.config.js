@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        pattner: "url('../assets/bg.webp')",
-        // pattner: "url('../assets/bg1.webp')",
+        // pattner: "url('../assets/bg.webp')",
+        pattner: "url('../assets/bg1.webp')",
         // pattner: "url('../assets/background.webp')",
         home: "url('../assets/home2.webp')",
         // home: "url('../assets/home.webp')",
