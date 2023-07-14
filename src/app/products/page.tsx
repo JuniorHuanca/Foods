@@ -41,7 +41,9 @@ const Products = (props: Props) => {
         </div>
       )}
       {status === EStateGeneric.PENDING && (
-        <div className="bg-red-500 w-full h-[80vh]"></div>
+        <div className="bg-red-500 w-full h-[80vh]">
+          <span>Loading...</span>
+        </div>
       )}
       {status === EStateGeneric.FAILED && (
         <div className="flex flex-col justify-center items-center w-full h-[80vh]">

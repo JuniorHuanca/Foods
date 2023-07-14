@@ -18,7 +18,7 @@ const Navbar = (props: Props) => {
         <div className="flex items-center justify-between h-full w-full">
           <div className="flex flex-1 justify-between items-center">
             <div className="flex-shrink-0">
-              <Link href="/" className=" font-bold text-lg">
+              <Link href="/" className=" font-bold text-xl">
                 SmartEats
               </Link>
             </div>
@@ -26,19 +26,19 @@ const Navbar = (props: Props) => {
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
                   href="/"
-                  className="px-3 py-2 rounded-md text-sm font-medium"
+                  className="px-3 py-2 rounded-md font-bold hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
                 >
                   Home
                 </Link>
                 <Link
                   href="/products"
-                  className="px-3 py-2 rounded-md text-sm font-medium"
+                  className="px-3 py-2 rounded-md font-bold hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
                 >
                   Products
                 </Link>
                 <Link
                   href="/me"
-                  className="px-3 py-2 rounded-md text-sm font-medium"
+                  className="px-3 py-2 rounded-md font-bold hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
                 >
                   About Me
                 </Link>
