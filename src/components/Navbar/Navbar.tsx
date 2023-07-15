@@ -37,7 +37,7 @@ const Navbar = (props: Props) => {
                   Products
                 </Link>
                 <Link
-                  href="/me"
+                  href="/aboutMe"
                   className="px-3 py-2 rounded-md font-bold hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
                 >
                   About Me
@@ -114,7 +114,7 @@ const Navbar = (props: Props) => {
             Products
           </Link>
           <Link
-            href="/me"
+            href="/aboutMe"
             className="block px-3 py-2 rounded-md text-base font-medium"
           >
             About Me

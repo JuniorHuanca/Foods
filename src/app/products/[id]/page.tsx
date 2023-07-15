@@ -13,6 +13,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { BiSolidError } from "react-icons/bi";
+import Loader from "@/components/Loader/Loader";
 type Props = {
   params: { id: string };
 };
@@ -29,7 +30,7 @@ const Detail = ({ params }: Props) => {
     })();
 
     return () => {
-      // dispatch(cleanUpProduct());
+      dispatch(cleanUpProduct());
     };
   }, []);
   return (
@@ -50,7 +51,9 @@ const Detail = ({ params }: Props) => {
         </div>
       )}
       {status === EStateGeneric.PENDING && (
-        <div className="bg-red-500 w-full h-[80vh]"></div>
+        <div className="w-full h-[80vh]">
+          <Loader />
+        </div>
       )}
       {status === EStateGeneric.FAILED && (
         <div className="flex flex-col justify-center items-center w-full h-[80vh]">

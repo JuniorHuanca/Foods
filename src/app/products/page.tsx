@@ -1,6 +1,7 @@
 "use client";
 import Card from "@/components/Card/Card";
 import Layout from "@/components/Layout/Layout";
+import Loader from "@/components/Loader/Loader";
 import { EStateGeneric } from "@/shared/types";
 import {
   cleanUpProducts,
@@ -41,19 +42,21 @@ const Products = (props: Props) => {
         </div>
       )}
       {status === EStateGeneric.PENDING && (
-        <div className="bg-red-500 w-full h-[80vh]">
-          <span>Loading...</span>
+        <div className="w-full h-[80vh]">
+          <Loader />
         </div>
       )}
       {status === EStateGeneric.FAILED && (
         <div className="flex flex-col justify-center items-center w-full h-[80vh]">
-          <BiSolidError className="text-red-500 text-5xl sm:text-8xl" />
-          <h2 className="text-5xl md:text-6xl text-center font-bold">
-            Product not found
-          </h2>
-          <Link className="text-2xl text-red-600 underline" href="/">
-            Go to Home
-          </Link>
+          <div className="flex flex-col items-center p-5 bg-black/50 rounded-md">
+            <BiSolidError className="text-red-500 text-5xl sm:text-8xl" />
+            <h2 className="text-5xl md:text-6xl text-center font-bold">
+              Products not found
+            </h2>
+            <Link className="text-2xl text-red-600 underline" href="/">
+              Go to Home
+            </Link>
+          </div>
         </div>
       )}
     </Layout>
