@@ -2,6 +2,7 @@
 import Card from "@/components/Card/Card";
 import Layout from "@/components/Layout/Layout";
 import Loader from "@/components/Loader/Loader";
+import Pagination from "@/components/Pagination";
 import { EStateGeneric } from "@/shared/types";
 import {
   cleanUpProducts,
@@ -15,11 +16,26 @@ import { useEffect } from "react";
 import { BiSolidError } from "react-icons/bi";
 import { useSelector } from "react-redux";
 
-type Props = {};
+type Props = {
+  params: { page: string };
+};
 
-const Products = (props: Props) => {
+const Products = ({
+  searchParams,
+}: {
+  // searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: { page: string };
+}) => {
   const products = useSelector(selectAllProducts);
   const status = useSelector(selectAllProductsStatus);
+
+  const currentPage = searchParams?.page ? parseInt(searchParams?.page) : 1;
+  const itemsPerPage = 10;
+  const minItems = (currentPage - 1) * itemsPerPage;
+  const maxItems = currentPage * itemsPerPage;
+  const maxPages = Math.ceil(products.length / itemsPerPage);
+  const items = products.slice(minItems, maxItems);
+  
   const dispatch = useAppDispatch();
   useEffect(() => {
     (async () => {
@@ -35,10 +51,13 @@ const Products = (props: Props) => {
   return (
     <Layout>
       {status === EStateGeneric.SUCCEEDED && (
-        <div className="flex flex-wrap justify-center gap-4">
-          {products.map((e, index) => (
-            <Card food={e} key={index} />
-          ))}
+        <div className="flex flex-col justify-between min-h-[80vh]">
+          <div className="flex flex-wrap justify-center gap-4">
+            {items.map((e, index) => (
+              <Card food={e} key={index} />
+            ))}
+          </div>
+          <Pagination page={searchParams?.page} maxPages={maxPages} />
         </div>
       )}
       {status === EStateGeneric.PENDING && (

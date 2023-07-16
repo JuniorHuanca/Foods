@@ -13,9 +13,9 @@ const Navbar = (props: Props) => {
   };
 
   return (
-    <nav className="h-[10vh] bg-black/50 text-white">
+    <nav className="min-h-[10vh] bg-black/50 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div className="flex items-center justify-between h-full w-full">
+        <div className="flex items-center justify-between h-16 w-full">
           <div className="flex flex-1 justify-between items-center">
             <div className="flex-shrink-0">
               <Link href="/" className=" font-bold text-xl">
@@ -55,7 +55,7 @@ const Navbar = (props: Props) => {
           <div className="-mr-2 flex md:hidden">
             <button
               type="button"
-              className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              className="bg-green-600 inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-green-700"
               aria-expanded={isMobileMenuOpen ? "true" : "false"}
               onClick={toggleMobileMenu}
             >
@@ -103,40 +103,25 @@ const Navbar = (props: Props) => {
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <Link
             href="/"
-            className="block px-3 py-2 rounded-md text-base font-medium"
+            className="block px-3 py-2 rounded-md text-base font-medium hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
           >
             Home
           </Link>
           <Link
             href="/products"
-            className="block px-3 py-2 rounded-md text-base font-medium"
+            className="block px-3 py-2 rounded-md text-base font-medium hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
           >
             Products
           </Link>
           <Link
             href="/aboutMe"
-            className="block px-3 py-2 rounded-md text-base font-medium"
+            className="block px-3 py-2 rounded-md text-base font-medium hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
           >
             About Me
           </Link>
         </div>
-        <div className="pt-4 pb-3 border-t border-gray-700">
+        <div className="pt-4 pb-3 border-t border-green-600">
           <div className="flex items-center px-5 sm:px-6">
-            <div className="flex-shrink-0">
-              <svg
-                className="h-6 w-6"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </div>
             <ModeSelector />
           </div>
         </div>
