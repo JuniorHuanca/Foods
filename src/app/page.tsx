@@ -1,12 +1,15 @@
+"use client";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import Link from "next/link";
 import { ramdon } from "@/shared/data/ramdon";
 import { BsFileArrowDownFill } from "react-icons/bs";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 type Props = {};
 
 const Home = (props: Props) => {
+  const router = useRouter();
   return (
     <main className="w-full h-full">
       <div className="w-full h-full bg-home dark:bg-homeDark bg-repeat bg-cover">
@@ -18,9 +21,20 @@ const Home = (props: Props) => {
               A Celebration of Food: Where Every Dish Tells a Story of Flavorful
               Traditions.
             </span>
-            <Link href={"#featured"} className="my-2 rounded-lg">
+            <button
+              className="my-2 rounded-lg"
+              onClick={() => {
+                router.push(`#featured`);
+                const windowHeight = window.innerHeight;
+                window.scrollTo({
+                  top: windowHeight,
+                  left: 0,
+                  behavior: "smooth",
+                });
+              }}
+            >
               <BsFileArrowDownFill className="text-5xl animate-bounce" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -60,7 +74,10 @@ const Home = (props: Props) => {
           </div>
           <div className="flex items-center w-full">
             <span className="flex-grow h-0 border-b-2 border-black dark:border-white"></span>
-            <Link href="/products" className="bg-green-600 text-center mx-4 px-4 py-2 rounded-md font-bold text-xl">
+            <Link
+              href="/products"
+              className="bg-green-600 text-center mx-4 px-4 py-2 rounded-md font-bold text-xl"
+            >
               See Products
             </Link>
             <span className="flex-grow h-0 border-b-2 border-black dark:border-white"></span>
