@@ -24,7 +24,6 @@ const Home = (props: Props) => {
             <button
               className="my-2 rounded-lg"
               onClick={() => {
-                router.push(`#featured`);
                 const windowHeight = window.innerHeight;
                 window.scrollTo({
                   top: windowHeight,

@@ -1,5 +1,6 @@
 "use client";
 import Card from "@/components/Card/Card";
+import Filters from "@/components/Filters";
 import Layout from "@/components/Layout/Layout";
 import Loader from "@/components/Loader/Loader";
 import Pagination from "@/components/Pagination";
@@ -12,7 +13,7 @@ import {
 } from "@/states/productsSlice";
 import { useAppDispatch } from "@/states/store";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BiSolidError } from "react-icons/bi";
 import { useSelector } from "react-redux";
 
@@ -28,8 +29,19 @@ const Products = ({
 }) => {
   const products = useSelector(selectAllProducts);
   const productsStatus = useSelector(selectAllProductsStatus);
-
-  const currentPage = searchParams?.page ? parseInt(searchParams?.page) : 1;
+  // const [test, setTest] = useState(() => {
+  //   try {
+  //     const productsLocaleStorage = localStorage.getItem("products");
+  //     return productsLocaleStorage
+  //       ? JSON.parse(productsLocaleStorage)
+  //       : products;
+  //   } catch (error) {
+  //     return products;
+  //   }
+  // });
+  const [currentPage, setCurrentPage] = useState<number>(
+    searchParams?.page ? parseInt(searchParams?.page) : 1
+  );
   const itemsPerPage = 10;
   const minItems = (currentPage - 1) * itemsPerPage;
   const maxItems = currentPage * itemsPerPage;
@@ -39,6 +51,7 @@ const Products = ({
 
   const dispatch = useAppDispatch();
   useEffect(() => {
+    // localStorage.setItem("products", JSON.stringify(test));
     (async () => {
       if (productsStatus === EStateGeneric.IDLE) {
         await dispatch(getAllProducts());
@@ -53,12 +66,18 @@ const Products = ({
     <Layout>
       {productsStatus === EStateGeneric.SUCCEEDED && !isEmtpy && (
         <div className="flex flex-col justify-between min-h-[80vh]">
+          <Filters />
           <div className="flex flex-wrap justify-center gap-4">
             {items.map((e, index) => (
               <Card food={e} key={index} />
             ))}
+            Filters
           </div>
-          <Pagination page={searchParams?.page} maxPages={maxPages} />
+          <Pagination
+            maxPages={maxPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       )}
       {productsStatus === EStateGeneric.PENDING && (

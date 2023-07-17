@@ -4,22 +4,23 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 type Props = {
-  page: string | undefined;
   maxPages: number;
+  currentPage: number;
+  setCurrentPage: (value: number) => void;
 };
 import { useRouter } from "next/navigation";
 
-const Pagination = ({ page, maxPages }: Props) => {
+const Pagination = ({ maxPages, currentPage, setCurrentPage }: Props) => {
   const router = useRouter();
 
-  const currentPage = page ? parseInt(page) : 1;
-
   const nextPage = () => {
+    setCurrentPage(currentPage + 1);
     router.push(`?page=${currentPage + 1}`);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   const previousPage = () => {
+    setCurrentPage(currentPage - 1);
     router.push(`?page=${currentPage - 1}`);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
 
 html {
@@ -15,8 +16,6 @@ html {
   display: none;
 }
 
-html,
-body,
-* {
-  scroll-behavior: auto;
+@media screen {
+  
 }
