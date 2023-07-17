@@ -61,6 +61,28 @@ const productsSlice = createSlice({
         oneProductStatus: EStateGeneric.IDLE,
       };
     },
+    sortByName: (state, action) => {
+      const items = state.products;
+      const sorted =
+        action.payload === "atoz"
+          ? items.slice().sort((a, b) => a.title.localeCompare(b.title))
+          : items.slice().sort((a, b) => b.title.localeCompare(a.title));
+      return {
+        ...state,
+        products: sorted,
+      };
+    },
+    sortByScore: (state, action) => {
+      const items = state.products;
+      const sorted =
+        action.payload === "asc"
+          ? items.slice().sort((a, b) => a.healthScore - b.healthScore)
+          : items.slice().sort((a, b) => b.healthScore - a.healthScore);
+      return {
+        ...state,
+        products: sorted,
+      };
+    },
     setFilters: (state, action) => {
       return {
         ...state,
@@ -82,8 +104,8 @@ const productsSlice = createSlice({
     });
 
     builder.addCase(getOneProduct.fulfilled, (state, action) => {
-        state.product = action.payload;
-        state.oneProductStatus = EStateGeneric.SUCCEEDED;
+      state.product = action.payload;
+      state.oneProductStatus = EStateGeneric.SUCCEEDED;
     });
     builder.addCase(getOneProduct.pending, (state, action) => {
       state.oneProductStatus = EStateGeneric.PENDING;
@@ -99,8 +121,13 @@ export const selectAllProductsStatus = (state: RootState) =>
 export const selectOneProductStatus = (state: RootState) =>
   state.products.oneProductStatus;
 
-export const { cleanUpProducts, cleanUpProduct, setFilters } =
-  productsSlice.actions;
+export const {
+  cleanUpProducts,
+  cleanUpProduct,
+  setFilters,
+  sortByName,
+  sortByScore,
+} = productsSlice.actions;
 export default productsSlice.reducer;
 
 export const allFilters = (store: RootState) => store.products.filters;
