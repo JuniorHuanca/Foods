@@ -1,6 +1,6 @@
 "use client";
 import { dietTypes } from "@/shared/data/types";
-import { sortByName, sortByScore } from "@/states/productsSlice";
+import { filterByDiet, sortByName, sortByScore } from "@/states/productsSlice";
 import { useAppDispatch } from "@/states/store";
 import { ChangeEvent, useState } from "react";
 import RadioSelector from "./RadioSelector";
@@ -8,60 +8,95 @@ type Props = {};
 
 const Filters = (props: Props) => {
   const dispatch = useAppDispatch();
-  const [dropdown, setDropdown] = useState<{ [key: string]: boolean }>({
+  const initialDropdown = {
     alphabetical: false,
     healthScore: false,
+    dietType: false,
+  };
+  const [dropdown, setDropdown] = useState<{ [key: string]: boolean }>({
+    ...initialDropdown,
   });
-  const [filter, setFilter] = useState<string>("");
+  const [checked, setChecked] = useState<{ [key: string]: string }>({
+    sort: "",
+    filter: "",
+  });
 
   const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
+    setChecked({
+      ...checked,
+      sort: e.target.value,
+    });
     dispatch(sortByName(e.target.value));
+    setDropdown({
+      ...initialDropdown,
+    });
   };
 
   const handleChangeScore = (e: ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
+    setChecked({
+      ...checked,
+      sort: e.target.value,
+    });
     dispatch(sortByScore(e.target.value));
+    setDropdown({
+      ...initialDropdown,
+    });
+  };
+
+  const handleFilterByDiet = (e: ChangeEvent<HTMLInputElement>) => {
+    setChecked({
+      ...checked,
+      filter: e.target.value,
+    });
+    dispatch(filterByDiet(e.target.value));
+    setDropdown({
+      ...initialDropdown,
+    });
   };
 
   const alphabetical = ["atoz", "ztoa"];
   const healthScore = ["asc", "desc"];
   return (
-    <div className="flex w-full justify-around items-center text-xl py-2 gap-2 bg-black/50">
+    <div className="flex flex-wrap w-full justify-around items-center text-xl py-2 gap-2 bg-black/50">
       <RadioSelector
         active={dropdown.alphabetical}
         setActive={() =>
           setDropdown({
-            healthScore: false,
+            ...initialDropdown,
             alphabetical: !dropdown.alphabetical,
           })
         }
         customFunction={handleChangeName}
         name={"Alphabetical"}
         items={alphabetical}
-        filter={filter}
+        checked={checked.sort}
       />
       <RadioSelector
         active={dropdown.healthScore}
         setActive={() =>
           setDropdown({
+            ...initialDropdown,
             healthScore: !dropdown.healthScore,
-            alphabetical: false,
           })
         }
         customFunction={handleChangeScore}
         name={"HealthScore"}
         items={healthScore}
-        filter={filter}
+        checked={checked.sort}
       />
-      <select>
-        <option value="">TypeDiets</option>
-        {dietTypes.map((e, index) => (
-          <option value={e} key={index}>
-            {e}
-          </option>
-        ))}
-      </select>
+      <RadioSelector
+        active={dropdown.dietType}
+        setActive={() =>
+          setDropdown({
+            ...initialDropdown,
+            dietType: !dropdown.dietType,
+          })
+        }
+        customFunction={handleFilterByDiet}
+        name={"Diet Types"}
+        items={dietTypes}
+        checked={checked.filter}
+      />
     </div>
   );
 };

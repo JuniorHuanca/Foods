@@ -5,7 +5,7 @@ type Props = {
   customFunction: (value: ChangeEvent<HTMLInputElement>) => void;
   name: string;
   items: string[];
-  filter: string;
+  checked: string;
 };
 
 const RadioSelector = ({
@@ -14,7 +14,7 @@ const RadioSelector = ({
   customFunction,
   items,
   name,
-  filter,
+  checked,
 }: Props) => {
   return (
     <div className="text-white">
@@ -55,7 +55,7 @@ const RadioSelector = ({
               name={name}
               value={e}
               onChange={customFunction}
-              checked={filter === e}
+              checked={checked === e}
             />
             <span>{e}</span>
           </label>

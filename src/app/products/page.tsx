@@ -64,38 +64,41 @@ const Products = ({
   }, []);
   return (
     <Layout>
-      {productsStatus === EStateGeneric.SUCCEEDED && !isEmtpy && (
+      {productsStatus === EStateGeneric.SUCCEEDED && (
         <div className="flex flex-col justify-between min-h-[80vh]">
           <Filters />
-          <div className="flex flex-wrap justify-center gap-4">
-            {items.map((e, index) => (
-              <Card food={e} key={index} />
-            ))}
-            Filters
-          </div>
-          <Pagination
-            maxPages={maxPages}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          {!isEmtpy && (
+            <>
+              <div className="flex flex-wrap justify-center gap-4">
+                {items.map((e, index) => (
+                  <Card food={e} key={index} />
+                ))}
+              </div>
+              <Pagination
+                maxPages={maxPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
+            </>
+          )}
+          {isEmtpy && (
+            <div className="flex justify-center items-center flex-1">
+              <div className="flex flex-col items-center p-5 bg-black/50 rounded-md">
+                <BiSolidError className="text-red-500 text-5xl sm:text-8xl" />
+                <h2 className="text-5xl md:text-6xl text-center font-bold">
+                  Products not found
+                </h2>
+                <Link className="text-2xl text-red-600 underline" href="/">
+                  Go to Home
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       )}
       {productsStatus === EStateGeneric.PENDING && (
         <div className="w-full h-[80vh]">
           <Loader />
-        </div>
-      )}
-      {productsStatus === EStateGeneric.SUCCEEDED && isEmtpy && (
-        <div className="flex flex-col justify-center items-center w-full h-[80vh]">
-          <div className="flex flex-col items-center p-5 bg-black/50 rounded-md">
-            <BiSolidError className="text-red-500 text-5xl sm:text-8xl" />
-            <h2 className="text-5xl md:text-6xl text-center font-bold">
-              Products not found
-            </h2>
-            <Link className="text-2xl text-red-600 underline" href="/">
-              Go to Home
-            </Link>
-          </div>
         </div>
       )}
       {productsStatus === EStateGeneric.FAILED && (

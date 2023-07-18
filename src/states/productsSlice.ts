@@ -29,6 +29,7 @@ export const getOneProduct = createAsyncThunk(
 
 type typesState = {
   products: IFoodAPI[];
+  allProducts: IFoodAPI[];
   product: IFoodAPI;
   filters: [];
   allProductsStatus: EStateGeneric;
@@ -37,6 +38,7 @@ type typesState = {
 
 const initialState = {
   products: [],
+  allProducts: [],
   product: {} as IFoodAPI,
   filters: [],
   allProductsStatus: EStateGeneric.IDLE,
@@ -83,6 +85,38 @@ const productsSlice = createSlice({
         products: sorted,
       };
     },
+    filterByDiet: (state, action) => {
+      const items = state.allProducts;
+
+      const sorted =
+        action.payload === "all"
+          ? items
+          : items.filter((item) => {
+              // if (item.diets.includes(action.payload)) return item;
+              if (item.diets.length > 0) {
+                if (item.diets.find((element) => element === action.payload))
+                  return item;
+              }
+
+              if (
+                action.payload === "vegetarian" &&
+                item.hasOwnProperty("vegetarian") &&
+                item.vegetarian === true
+              )
+                return item;
+
+              if (
+                action.payload === "dairy Free" &&
+                item.hasOwnProperty("dairy Free") &&
+                item.dairyFree === true
+              )
+                return item;
+            });
+      return {
+        ...state,
+        products: sorted,
+      };
+    },
     setFilters: (state, action) => {
       return {
         ...state,
@@ -94,6 +128,7 @@ const productsSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getAllProducts.fulfilled, (state, action) => {
       state.products = action.payload;
+      state.allProducts = action.payload;
       state.allProductsStatus = EStateGeneric.SUCCEEDED;
     });
     builder.addCase(getAllProducts.pending, (state, action) => {
@@ -127,6 +162,7 @@ export const {
   setFilters,
   sortByName,
   sortByScore,
+  filterByDiet,
 } = productsSlice.actions;
 export default productsSlice.reducer;
 
