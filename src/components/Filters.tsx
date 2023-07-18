@@ -4,9 +4,12 @@ import { filterByDiet, sortByName, sortByScore } from "@/states/productsSlice";
 import { useAppDispatch } from "@/states/store";
 import { ChangeEvent, useState } from "react";
 import RadioSelector from "./RadioSelector";
+import { useRouter } from "next/navigation";
+
 type Props = {};
 
 const Filters = (props: Props) => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const initialDropdown = {
     alphabetical: false,
@@ -30,6 +33,7 @@ const Filters = (props: Props) => {
     setDropdown({
       ...initialDropdown,
     });
+    router.push(`/products`);
   };
 
   const handleChangeScore = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +45,7 @@ const Filters = (props: Props) => {
     setDropdown({
       ...initialDropdown,
     });
+    router.push(`/products`);
   };
 
   const handleFilterByDiet = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,6 +57,7 @@ const Filters = (props: Props) => {
     setDropdown({
       ...initialDropdown,
     });
+    router.push(`/products`);
   };
 
   const alphabetical = ["atoz", "ztoa"];

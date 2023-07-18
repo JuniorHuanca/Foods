@@ -92,19 +92,16 @@ const productsSlice = createSlice({
         action.payload === "all"
           ? items
           : items.filter((item) => {
-              // if (item.diets.includes(action.payload)) return item;
               if (item.diets.length > 0) {
                 if (item.diets.find((element) => element === action.payload))
                   return item;
               }
-
               if (
                 action.payload === "vegetarian" &&
                 item.hasOwnProperty("vegetarian") &&
                 item.vegetarian === true
               )
                 return item;
-
               if (
                 action.payload === "dairy Free" &&
                 item.hasOwnProperty("dairy Free") &&

@@ -6,7 +6,7 @@ import Loader from "@/components/Loader/Loader";
 import Pagination from "@/components/Pagination";
 import { EStateGeneric } from "@/shared/types";
 import {
-  cleanUpProducts,
+  // cleanUpProducts,
   getAllProducts,
   selectAllProducts,
   selectAllProductsStatus,
@@ -52,16 +52,16 @@ const Products = ({
   const dispatch = useAppDispatch();
   useEffect(() => {
     // localStorage.setItem("products", JSON.stringify(test));
+    setCurrentPage(searchParams?.page ? parseInt(searchParams?.page) : 1);
     (async () => {
       if (productsStatus === EStateGeneric.IDLE) {
         await dispatch(getAllProducts());
       }
     })();
-
     return () => {
-      dispatch(cleanUpProducts());
+      // dispatch(cleanUpProducts());
     };
-  }, []);
+  }, [searchParams]);
   return (
     <Layout>
       {productsStatus === EStateGeneric.SUCCEEDED && (
