@@ -10,6 +10,7 @@ html {
 
 * {
   font-family: 'Aladin', cursive;
+  font-size: 18px;
 }
 
 *::-webkit-scrollbar {

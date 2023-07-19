@@ -30,23 +30,35 @@ const Detail = ({ params }: Props) => {
     })();
 
     return () => {
-      dispatch(cleanUpProduct());
+      // dispatch(cleanUpProduct());
     };
   }, []);
   return (
     <Layout>
       {status === EStateGeneric.SUCCEEDED && (
-        <div className="bg-blue-500 w-full">
-          <h1>{product.title}</h1>
-          <div className="w-1/3 h-64">
+        <div className="bg-black w-full min-h-[80vh] md:flex">
+          <div className="flex-1 p-1 sm:p-4 md:p-8">
             <div className="relative aspect-video">
               <Image
                 src={product.image}
                 alt={product.title}
                 fill
                 loading="lazy"
+                className="saturate-150"
               />
             </div>
+          </div>
+          <div className="flex-1 p-1 sm:p-4 md:p-8">
+            <h1 className="text-3xl font-bold uppercase my-2">{product.title}</h1>
+            <p className="my-2" dangerouslySetInnerHTML={{ __html: product.summary }}></p>
+            {product.diets.map((e, index) => (
+              <span
+                className="inline-block bg-green-600 text-black rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2"
+                key={index}
+              >
+                #{e}
+              </span>
+            ))}
           </div>
         </div>
       )}
