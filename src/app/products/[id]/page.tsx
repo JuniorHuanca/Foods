@@ -49,8 +49,13 @@ const Detail = ({ params }: Props) => {
             </div>
           </div>
           <div className="flex-1 p-1 sm:p-4 md:p-8">
-            <h1 className="text-3xl font-bold uppercase my-2">{product.title}</h1>
-            <p className="my-2" dangerouslySetInnerHTML={{ __html: product.summary }}></p>
+            <h1 className="text-lg md:text-3xl font-bold uppercase my-2">
+              {product.title}
+            </h1>
+            <p
+              className="my-2"
+              dangerouslySetInnerHTML={{ __html: product.summary }}
+            ></p>
             {product.diets.map((e, index) => (
               <span
                 className="inline-block bg-green-600 text-black rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2"
@@ -59,6 +64,30 @@ const Detail = ({ params }: Props) => {
                 #{e}
               </span>
             ))}
+            <details open={false}>
+              <summary className="md:text-2xl font-semibold my-4">
+                Instructions:
+              </summary>
+              <div className="max-h-[500px] overflow-auto">
+                {product.analyzedInstructions[0].steps.map((step) => (
+                  <div key={step.number} className="mb-4">
+                    <h2 className="font-bold md:text-xl">
+                      Step {step.number}: {step.length?.number}{" "}
+                      {step.length?.unit}
+                    </h2>
+                    <p>{step.step}</p>
+                    <h3 className="font-semibold md:text-lg">Ingredientes:</h3>
+                    {step.ingredients && step.ingredients.length > 0 && (
+                      <ul>
+                        {step.ingredients.map((ingredient) => (
+                          <li key={ingredient.id}>{ingredient.name}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </details>
           </div>
         </div>
       )}

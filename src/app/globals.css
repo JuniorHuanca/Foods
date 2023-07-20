@@ -10,13 +10,14 @@ html {
 
 * {
   font-family: 'Aladin', cursive;
-  font-size: 18px;
 }
 
 *::-webkit-scrollbar {
   display: none;
 }
 
-@media screen {
-  
+@media only screen and (max-width: 480px) {
+  * {
+    font-size: 20px;
+  }
 }
