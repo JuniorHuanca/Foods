@@ -16,7 +16,7 @@ const Home = (props: Props) => {
         <Navbar />
         <div className="min-h-[90vh] flex justify-center items-center">
           <div className="flex flex-col justify-center items-center p-4 bg-black/50 rounded-md text-white">
-            <h1 className="text-5xl font-bold">SmartEats</h1>
+            <h1 className="text-3xl md:text-5xl font-bold">SmartEats</h1>
             <span className="my-2">
               A Celebration of Food: Where Every Dish Tells a Story of Flavorful
               Traditions.

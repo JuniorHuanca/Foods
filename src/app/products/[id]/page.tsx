@@ -36,7 +36,7 @@ const Detail = ({ params }: Props) => {
   return (
     <Layout>
       {status === EStateGeneric.SUCCEEDED && (
-        <div className="bg-black w-full min-h-[80vh] md:flex">
+        <div className="bg-white dark:bg-black w-full min-h-[80vh] md:flex">
           <div className="flex-1 p-1 sm:p-4 md:p-8">
             <div className="relative aspect-video">
               <Image
@@ -76,13 +76,17 @@ const Detail = ({ params }: Props) => {
                       {step.length?.unit}
                     </h2>
                     <p>{step.step}</p>
-                    <h3 className="font-semibold md:text-lg">Ingredientes:</h3>
                     {step.ingredients && step.ingredients.length > 0 && (
-                      <ul>
-                        {step.ingredients.map((ingredient) => (
-                          <li key={ingredient.id}>{ingredient.name}</li>
-                        ))}
-                      </ul>
+                      <>
+                        <h3 className="font-semibold md:text-lg">
+                          Ingredients:
+                        </h3>
+                        <ul>
+                          {step.ingredients.map((ingredient) => (
+                            <li key={ingredient.id}>{ingredient.name}</li>
+                          ))}
+                        </ul>
+                      </>
                     )}
                   </div>
                 ))}
