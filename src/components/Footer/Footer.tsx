@@ -20,10 +20,10 @@ const Footer = (props: Props) => {
             Home
           </Link>
           <Link
-            href="/products"
+            href="/recipes"
             className="block md:inline mx-2 mb-2 md:mb-0"
           >
-            Products
+            Recipes
           </Link>
           <Link
             href="/aboutMe"
