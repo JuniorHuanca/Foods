@@ -63,7 +63,7 @@ const Home = (props: Props) => {
                 </div>
                 <h3 className="py-2 text-center">{e.title}</h3>
                 <Link
-                  href={`/products/${e.id}`}
+                  href={`/recipes/${e.id}`}
                   className="bg-green-600 text-center px-4 py-2 rounded-md w-max"
                 >
                   See Recipe
@@ -74,7 +74,7 @@ const Home = (props: Props) => {
           <div className="flex items-center w-full">
             <span className="flex-grow h-0 border-b-2 border-black dark:border-white"></span>
             <Link
-              href="/products"
+              href="/recipes"
               className="bg-green-600 text-center mx-4 px-4 py-2 rounded-md font-bold text-xl"
             >
               See Products

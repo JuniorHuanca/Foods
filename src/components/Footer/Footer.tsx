@@ -26,7 +26,7 @@ const Footer = (props: Props) => {
             Products
           </Link>
           <Link
-            href="/me"
+            href="/aboutMe"
             className="block md:inline mx-2 mb-2 md:mb-0"
           >
             About Me

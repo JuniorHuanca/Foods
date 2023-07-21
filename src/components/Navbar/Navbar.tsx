@@ -31,10 +31,16 @@ const Navbar = (props: Props) => {
                   Home
                 </Link>
                 <Link
-                  href="/products"
+                  href="/recipes"
                   className="px-3 py-2 rounded-md font-bold hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
                 >
-                  Products
+                  Recipes
+                </Link>
+                <Link
+                  href="/newRecipe"
+                  className="px-3 py-2 rounded-md font-bold hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
+                >
+                  New Recipe
                 </Link>
                 <Link
                   href="/aboutMe"
@@ -108,10 +114,16 @@ const Navbar = (props: Props) => {
             Home
           </Link>
           <Link
-            href="/products"
+            href="/recipes"
             className="block px-3 py-2 rounded-md text-base font-medium hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
           >
-            Products
+            Recipes
+          </Link>
+          <Link
+            href="/newRecipe"
+            className="block px-3 py-2 rounded-md text-base font-medium hover:text-green-600 transition duration-500 hover:border-b-2 border-green-600"
+          >
+            New Recipe
           </Link>
           <Link
             href="/aboutMe"

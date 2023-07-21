@@ -36,7 +36,7 @@ const Detail = ({ params }: Props) => {
   return (
     <Layout>
       {status === EStateGeneric.SUCCEEDED && (
-        <div className="bg-white dark:bg-black w-full min-h-[80vh] md:flex">
+        <div className="bg-white/70 dark:bg-black/70 w-full min-h-[80vh] md:flex">
           <div className="flex-1 p-1 sm:p-4 md:p-8">
             <div className="relative aspect-video">
               <Image

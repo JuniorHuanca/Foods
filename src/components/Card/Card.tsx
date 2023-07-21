@@ -10,7 +10,7 @@ const Card = ({ food }: Props) => {
   return (
     <div className="w-full max-w-sm bg-white/80 dark:bg-black/80 shadow-lg rounded-lg overflow-hidden my-4">
       <div className="relative aspect-video">
-        <Link href={`/products/${food.id}`}>
+        <Link href={`/recipes/${food.id}`}>
           <Image
             src={food.image}
             alt={food.title}
