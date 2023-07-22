@@ -1,5 +1,6 @@
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import { Toaster } from "sonner";
 
 type Props = {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ const Layout = ({ children }: Props) => {
       <Navbar />
       <div className="min-h-[80vh]">{children}</div>
       <Footer />
+      <Toaster position="top-center" />
     </div>
   );
 };
