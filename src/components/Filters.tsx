@@ -33,7 +33,7 @@ const Filters = (props: Props) => {
     setDropdown({
       ...initialDropdown,
     });
-    router.push(`/products`);
+    router.push(`/recipes`);
   };
 
   const handleChangeScore = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +45,7 @@ const Filters = (props: Props) => {
     setDropdown({
       ...initialDropdown,
     });
-    router.push(`/products`);
+    router.push(`/recipes`);
   };
 
   const handleFilterByDiet = (e: ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +57,7 @@ const Filters = (props: Props) => {
     setDropdown({
       ...initialDropdown,
     });
-    router.push(`/products`);
+    router.push(`/recipes`);
   };
 
   const alphabetical = ["atoz", "ztoa"];
