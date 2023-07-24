@@ -1,6 +1,6 @@
 "use client";
 import Layout from "@/components/Layout/Layout";
-import Checkbox from "@/components/NewRecipe/CheckBox";
+import Checkbox from "@/components/NewRecipe/Checkbox";
 import Input from "@/components/NewRecipe/Input";
 import { FormValues, IFoodAPI } from "@/shared/types";
 import { useState, useEffect, ChangeEvent } from "react";
@@ -81,11 +81,13 @@ const newRecipe = (props: Props) => {
     validationSchema,
     onSubmit,
   });
-  async function onSubmit() {
+  async function onSubmit(
+    values: FormValues,
+    { resetForm }: { resetForm: () => void }
+  ) {
     try {
     } catch (error) {}
   }
-  console.log(formik.values.cheap)
   return (
     <Layout>
       <div className="flex flex-col min-h-[80vh] bg-black/50 text-white">
