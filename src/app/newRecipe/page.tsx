@@ -1,13 +1,12 @@
-"use client";
+// "use client";
 import Layout from "@/components/Layout/Layout";
-import { foods } from "@/shared/data/foods";
-import { IFoodAPI } from "@/shared/types";
-import { useState, useEffect } from "react";
+// import { IFoodAPI } from "@/shared/types";
+// import { useState, useEffect } from "react";
 
 type Props = {};
 
 const newRecipe = (props: Props) => {
-  const [data, setData] = useState<IFoodAPI>();
+  // const [data, setData] = useState<IFoodAPI>();
   return (
     <Layout>
       <div className="flex flex-col min-h-[80vh] bg-black/50 text-white">
