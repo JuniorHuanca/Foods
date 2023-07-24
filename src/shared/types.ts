@@ -64,3 +64,44 @@ export interface Length {
   number: number;
   unit: string;
 }
+
+// export type FormValues = {
+//   title: string;
+//   summary: string;
+// };
+
+export type FormValues = {
+  cheap: boolean;
+  dairyFree: boolean;
+  glutenFree: boolean;
+  lowFodmap: boolean;
+  sustainable: boolean;
+  vegan: boolean;
+  vegetarian: boolean;
+  veryHealthy: boolean;
+  veryPopular: boolean;
+  aggregateLikes: number;
+  cookingMinutes: number;
+  healthScore: number;
+  id: number;
+  preparationMinutes: number;
+  pricePerServing: number;
+  readyInMinutes: number;
+  servings: number;
+  weightWatcherSmartPoints: number;
+  title: string;
+  summary: string;
+  creditsText: string;
+  gaps: string;
+  image: string;
+  imageType: string;
+  license: string;
+  sourceName: string;
+  sourceUrl: string;
+  spoonacularSourceUrl: string;
+  cuisines: any[];
+  dishTypes: any[];
+  diets: any[];
+  occasions: any[];
+  analyzedInstructions: any[];
+};
