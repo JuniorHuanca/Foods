@@ -12,7 +12,12 @@ const Layout = ({ children }: Props) => {
       <Navbar />
       <div className="min-h-[80vh]">{children}</div>
       <Footer />
-      <Toaster position="top-center" />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: { background: "#16A34A", border: "none" },
+        }}
+      />
     </div>
   );
 };

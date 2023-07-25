@@ -47,12 +47,12 @@ const Pagination = ({ maxPages, currentPage, setCurrentPage }: Props) => {
         handleSubmit();
       }
     };
-    toast.custom(() => (
-      <div className="p-4 dark:bg-black/50 bg-white dark:text-white rounded-xl shadow-md w-full">
+    toast(
+      <div className="p-4 text-white rounded-xl w-full">
         <div className="flex flex-col p-4 gap-2">
           <h4 className="text-xl font-semibold">Select Page</h4>
           <input
-            className="dark:bg-black/50 bg-slate-200 focus:outline-none p-2 rounded-md"
+            className="bg-black/50 focus:outline-none p-2 rounded-md"
             type="text"
             ref={inputRef}
             autoFocus
@@ -60,14 +60,14 @@ const Pagination = ({ maxPages, currentPage, setCurrentPage }: Props) => {
             onKeyDown={handleKeyDown}
           />
           <button
-            className="dark:bg-black/50 bg-slate-100 p-2 rounded-md"
+            className="bg-black/50 p-2 rounded-md"
             onClick={handleSubmit}
           >
             Go
           </button>
         </div>
       </div>
-    ));
+    );
   };
 
   return (
