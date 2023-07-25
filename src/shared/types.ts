@@ -99,9 +99,9 @@ export type FormValues = {
   sourceName: string;
   sourceUrl: string;
   spoonacularSourceUrl: string;
-  cuisines: any[];
-  dishTypes: any[];
-  diets: any[];
-  occasions: any[];
-  analyzedInstructions: any[];
+  cuisines: string[];
+  dishTypes: string[];
+  diets: string[];
+  occasions: string[];
+  analyzedInstructions: string[];
 };

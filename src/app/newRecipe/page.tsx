@@ -6,9 +6,11 @@ import { FormValues, IFoodAPI } from "@/shared/types";
 import { useState, useEffect, ChangeEvent } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Options from "@/components/NewRecipe/Options";
+import { cuisinesTypes, dietTypes, dishTypes, occasionsTypes } from "@/shared/data/types";
 type Props = {};
 
-const newRecipe = (props: Props) => {
+const NewRecipe = (props: Props) => {
   // const initialValues = {
   //   title: "",
   //   summary: "",
@@ -94,15 +96,19 @@ const newRecipe = (props: Props) => {
         <h1 className="text-3xl md:text-5xl font-bold text-center pb-4">
           New Recipe
         </h1>
-        <div className="flex flex-wrap gap-2">
+        <form onSubmit={formik.handleSubmit} className="flex flex-wrap gap-2">
           <Input formik={formik} fieldName="title" />
           <Input formik={formik} fieldName="summary" />
-
+          <Options formik={formik} items={cuisinesTypes} fieldName="cuisines" />
+          <Options formik={formik} items={dishTypes} fieldName="dishTypes" />
+          <Options formik={formik} items={occasionsTypes} fieldName="occasions" />
+          <Options formik={formik} items={dietTypes} fieldName="diets" />
           <Checkbox formik={formik} fieldName="cheap" />
-        </div>
+          <button type="submit">submit</button>
+        </form>
       </div>
     </Layout>
   );
 };
 
-export default newRecipe;
+export default NewRecipe;

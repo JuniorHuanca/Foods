@@ -15,6 +15,9 @@ const Input = ({ formik, fieldName }: Props) => {
         type="text"
         {...formik.getFieldProps(fieldName)}
       />
+      {/* {formik.touched[fieldName] && formik.errors[fieldName] && (
+        <div>{formik.errors[fieldName]}</div>
+      )} */}
     </div>
   );
 };
