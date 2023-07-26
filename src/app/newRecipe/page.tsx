@@ -106,7 +106,7 @@ const NewRecipe = (props: Props) => {
           onSubmit={formik.handleSubmit}
           className="flex flex-col items-center justify-center"
         >
-          <div className="flex flex-col items-center gap-2 p-1 md:p-4 xl:p-5 bg-black/50 md:[60%] lg:w-[50%]">
+          <div className="flex flex-col gap-2 p-1 md:p-4 xl:p-5 bg-black/50 md:[60%] lg:w-[50%]">
             <Input formik={formik} fieldName="title" />
             <Input formik={formik} fieldName="summary" />
             <Input formik={formik} fieldName="image" />

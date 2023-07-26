@@ -33,9 +33,9 @@ const Options = ({ items, fieldName, formik }: Props) => {
           </option>
         ))}
       </select>
-      <div className="flex flex-col justify-center gap-1">
+      <div className="flex flex-wrap gap-1">
         {prevValues.map((e, index) => (
-          <span className="relative bg-green-500 p-1" key={index}>
+          <span className="relative bg-green-500 p-1 pr-9" key={index}>
             {e}
             <button
               className="absolute top-0 right-0"
