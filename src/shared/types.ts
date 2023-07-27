@@ -103,5 +103,5 @@ export type FormValues = {
   dishTypes: string[];
   diets: string[];
   occasions: string[];
-  analyzedInstructions: string[];
+  analyzedInstructions: AnalyzedInstruction[];
 };

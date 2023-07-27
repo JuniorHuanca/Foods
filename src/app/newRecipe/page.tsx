@@ -13,6 +13,7 @@ import {
   dishTypes,
   occasionsTypes,
 } from "@/shared/data/types";
+import Instructions from "@/components/NewRecipe/Instructions";
 type Props = {};
 
 const NewRecipe = (props: Props) => {
@@ -34,7 +35,7 @@ const NewRecipe = (props: Props) => {
     aggregateLikes: 22,
     cookingMinutes: -1,
     healthScore: 0,
-    id: Math.random() * (9999 - 0) + 0,
+    id: Math.floor(Math.random() * 10000),
     preparationMinutes: -1,
     pricePerServing: 210.21,
     readyInMinutes: 45,
@@ -58,25 +59,11 @@ const NewRecipe = (props: Props) => {
   } as FormValues;
 
   const validationSchema = Yup.object().shape({
-    aggregateLikes: Yup.number().required().min(0),
-    cookingMinutes: Yup.number().required().min(-1),
     healthScore: Yup.number().required().min(0),
     id: Yup.number().required().integer(),
-    preparationMinutes: Yup.number().required().min(-1),
-    pricePerServing: Yup.number().required().min(0),
-    readyInMinutes: Yup.number().required().min(0),
-    servings: Yup.number().required().min(1),
-    weightWatcherSmartPoints: Yup.number().required().min(0),
     title: Yup.string().required().trim(),
     summary: Yup.string().required().trim(),
-    creditsText: Yup.string().required().trim(),
-    gaps: Yup.string().required().trim(),
     image: Yup.string().required().trim(),
-    imageType: Yup.string().required().trim(),
-    license: Yup.string().required().trim(),
-    sourceName: Yup.string().required().trim(),
-    sourceUrl: Yup.string().required().trim(),
-    spoonacularSourceUrl: Yup.string().required().trim(),
     cuisines: Yup.array().min(1).required(),
     dishTypes: Yup.array().min(1).required(),
     diets: Yup.array().min(1).required(),
@@ -93,15 +80,12 @@ const NewRecipe = (props: Props) => {
     { resetForm }: { resetForm: () => void }
   ) {
     try {
-      console.log(values);
     } catch (error) {}
   }
   return (
     <Layout>
       <div className="flex flex-col min-h-[80vh] bg-black/50 text-white">
-        <h1 className="text-3xl font-bold text-center pb-4">
-          New Recipe
-        </h1>
+        <h1 className="text-3xl font-bold text-center pb-4">New Recipe</h1>
         <form
           onSubmit={formik.handleSubmit}
           className="flex flex-col items-center justify-center"
@@ -122,6 +106,10 @@ const NewRecipe = (props: Props) => {
               fieldName="occasions"
             />
             <Options formik={formik} items={dietTypes} fieldName="diets" />
+            <Instructions
+              formik={formik}
+              fieldName="analyzedInstructions"
+            />
             <div>
               <label className="capitalize p-2">
                 healthScore({formik.values.healthScore}):

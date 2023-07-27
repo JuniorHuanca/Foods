@@ -48,7 +48,7 @@ const Options = ({ items, fieldName, formik }: Props) => {
         ))}
       </div>
       {formik.touched[fieldName] && formik.errors[fieldName] && (
-        <div>{formik.errors[fieldName]}</div>
+        <div>{formik.errors[fieldName] as string}</div>
       )}
     </div>
   );
