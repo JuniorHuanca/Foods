@@ -30,13 +30,13 @@ interface IEnt {
 }
 
 const Instructions = ({ fieldName, formik }: Props) => {
-  let id = 1;
+  const [id, setId] = useState(1);
   const [data, setData] = useState<IData>({
     name: "",
     steps: [],
   });
   const [step, setStep] = useState<IStep>({
-    number: id++,
+    number: id,
     step: "",
     ingredients: [],
     equipment: [],
@@ -44,20 +44,21 @@ const Instructions = ({ fieldName, formik }: Props) => {
   const prevValues = formik.values[fieldName] as AnalyzedInstruction[];
 
   const handleAddStep = () => {
-    setData({
+    setId((prevId) => prevId + 1);
+    const updatedData = {
       ...data,
       steps: [...data.steps, step],
       name: "",
-    });
+    };
+    setData(updatedData);
     setStep({
-      number: id++,
+      number: id + 1,
       step: "",
       ingredients: [],
       equipment: [],
     });
-    formik.setFieldValue(fieldName, [data]);
+    formik.setFieldValue(fieldName, [updatedData]);
   };
-  console.log(data);
   return (
     <div className="">
       <label className="capitalize p-2">{fieldName}:</label>
