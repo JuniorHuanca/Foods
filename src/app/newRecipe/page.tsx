@@ -84,13 +84,13 @@ const NewRecipe = (props: Props) => {
   }
   return (
     <Layout>
-      <div className="flex flex-col min-h-[80vh] bg-black/50 text-white">
-        <h1 className="text-3xl font-bold text-center pb-4">New Recipe</h1>
+      <div className="flex flex-col min-h-[80vh] bg-black/50">
+        <h1 className="text-3xl font-bold text-center pb-4 text-white">New Recipe</h1>
         <form
           onSubmit={formik.handleSubmit}
           className="flex flex-col items-center justify-center"
         >
-          <div className="flex flex-col gap-2 p-1 md:p-4 xl:p-5 bg-black/50 md:[60%] lg:w-[50%]">
+          <div className="flex flex-col gap-2 p-1 md:p-4 xl:p-5 bg-white/70 dark:bg-black/70 md:[60%] lg:w-[50%] rounded-md">
             <Input formik={formik} fieldName="title" />
             <Input formik={formik} fieldName="summary" />
             <Input formik={formik} fieldName="image" />
@@ -106,10 +106,6 @@ const NewRecipe = (props: Props) => {
               fieldName="occasions"
             />
             <Options formik={formik} items={dietTypes} fieldName="diets" />
-            <Instructions
-              formik={formik}
-              fieldName="analyzedInstructions"
-            />
             <div>
               <label className="capitalize p-2">
                 healthScore({formik.values.healthScore}):
@@ -123,6 +119,7 @@ const NewRecipe = (props: Props) => {
             </div>
             <Checkbox formik={formik} fieldName="cheap" />
             <Checkbox formik={formik} fieldName="veryPopular" />
+            <Instructions formik={formik} fieldName="analyzedInstructions" />
           </div>
           <button
             type="submit"

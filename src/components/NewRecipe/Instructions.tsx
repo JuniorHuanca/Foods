@@ -41,6 +41,12 @@ const Instructions = ({ fieldName, formik }: Props) => {
     ingredients: [],
     equipment: [],
   });
+  const [ingredient, setIngredients] = useState<IEnt>({
+    id: id,
+    name: "",
+    localizedName: "",
+    image: "",
+  });
   const prevValues = formik.values[fieldName] as AnalyzedInstruction[];
 
   const handleAddStep = () => {
@@ -57,8 +63,30 @@ const Instructions = ({ fieldName, formik }: Props) => {
       ingredients: [],
       equipment: [],
     });
+    setIngredients({
+      id: id + 1,
+      name: "",
+      localizedName: "",
+      image: "",
+    });
     formik.setFieldValue(fieldName, [updatedData]);
   };
+
+  const handleItems = (value: keyof IStep, state: IEnt) => {
+    const items = step[value] as IEnt[];
+    setStep({
+      ...step,
+      [value]: [...items, state],
+    });
+    setIngredients({
+      id: id + 1,
+      name: "",
+      localizedName: "",
+      image: "",
+    });
+  };
+  console.log(step);
+  console.log(formik.values[fieldName]);
   return (
     <div className="">
       <label className="capitalize p-2">{fieldName}:</label>
@@ -73,9 +101,35 @@ const Instructions = ({ fieldName, formik }: Props) => {
           })
         }
       />
+      <div>
+        <label className="capitalize p-2">ingredients:</label>
+        <input
+          className="px-2 py-1 rounded-md"
+          type="text"
+          value={ingredient.name}
+          onChange={(e) =>
+            setIngredients({
+              ...ingredient,
+              name: e.target.value,
+            })
+          }
+        />
+        {step.ingredients.map((e, index) => (
+          <span key={index}>{e.name}</span>
+        ))}
+        <button
+          type="button"
+          className="bg-green-600 p-2 disabled:opacity-70"
+          onClick={() => handleItems("ingredients", ingredient)}
+          disabled={!ingredient.name}
+        >
+          add ingredients
+        </button>
+      </div>
       <button
-        className="bg-red-500 p-2 rounded-md"
+        className="bg-red-500 p-2 rounded-md disabled:opacity-70"
         type="button"
+        disabled={!step.step}
         onClick={handleAddStep}
       >
         Add
@@ -108,7 +162,9 @@ const Instructions = ({ fieldName, formik }: Props) => {
         </details>
       )}
       {formik.touched[fieldName] && formik.errors[fieldName] && (
-        <div>{formik.errors[fieldName] as string}</div>
+        <div className="text-red-500">
+          * {formik.errors[fieldName] as string}
+        </div>
       )}
     </div>
   );
