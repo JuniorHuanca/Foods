@@ -85,13 +85,11 @@ const Instructions = ({ fieldName, formik }: Props) => {
       image: "",
     });
   };
-  console.log(step);
-  console.log(formik.values[fieldName]);
   return (
-    <div className="">
+    <div className="dark:bg-white/10 bg-white/80 py-4 rounded-md">
       <label className="capitalize p-2">{fieldName}:</label>
       <input
-        className="px-2 py-1 rounded-md"
+        className="px-2 py-1 rounded-md mt-2"
         type="text"
         value={step.step}
         onChange={(e) =>
@@ -101,10 +99,18 @@ const Instructions = ({ fieldName, formik }: Props) => {
           })
         }
       />
+      <button
+        className="bg-green-600 ml-2 p-1 rounded-md disabled:opacity-70"
+        type="button"
+        disabled={!step.step}
+        onClick={handleAddStep}
+      >
+        Add
+      </button>
       <div>
         <label className="capitalize p-2">ingredients:</label>
         <input
-          className="px-2 py-1 rounded-md"
+          className="px-2 py-1 rounded-md mt-2"
           type="text"
           value={ingredient.name}
           onChange={(e) =>
@@ -114,26 +120,22 @@ const Instructions = ({ fieldName, formik }: Props) => {
             })
           }
         />
-        {step.ingredients.map((e, index) => (
-          <span key={index}>{e.name}</span>
-        ))}
         <button
           type="button"
-          className="bg-green-600 p-2 disabled:opacity-70"
+          className="bg-green-600 ml-2 p-1 rounded-md disabled:opacity-70"
           onClick={() => handleItems("ingredients", ingredient)}
           disabled={!ingredient.name}
         >
           add ingredients
         </button>
+        <div className="flex flex-wrap justify-center gap-2 py-2">
+          {step.ingredients.map((e, index) => (
+            <span key={index} className="border-2 border-black dark:border-white p-2">
+              {index + 1} - {e.name}
+            </span>
+          ))}
+        </div>
       </div>
-      <button
-        className="bg-red-500 p-2 rounded-md disabled:opacity-70"
-        type="button"
-        disabled={!step.step}
-        onClick={handleAddStep}
-      >
-        Add
-      </button>
       {prevValues[0] && (
         <details open={false}>
           <summary className="md:text-2xl font-semibold my-4">

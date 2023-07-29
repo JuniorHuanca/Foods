@@ -123,7 +123,7 @@ const NewRecipe = (props: Props) => {
           </div>
           <button
             type="submit"
-            className="bg-sky-900 py-4 px-10 rounded-md border hover:scale-125 transition-transform text-white"
+            className="mt-2 bg-green-700 py-4 px-10 rounded-md hover:scale-125 transition-transform text-white"
           >
             submit
           </button>
