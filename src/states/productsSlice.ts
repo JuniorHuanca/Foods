@@ -35,7 +35,7 @@ type typesState = {
   allProductsStatus: EStateGeneric;
   oneProductStatus: EStateGeneric;
 };
-
+const foodsLocaleStorage = localStorage.getItem("foods");
 const initialState = {
   products: [],
   allProducts: [],
@@ -124,8 +124,12 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getAllProducts.fulfilled, (state, action) => {
-      state.products = action.payload;
-      state.allProducts = action.payload;
+      state.products = foodsLocaleStorage
+        ? JSON.parse(foodsLocaleStorage)
+        : action.payload;
+      state.allProducts = foodsLocaleStorage
+        ? JSON.parse(foodsLocaleStorage)
+        : action.payload;
       state.allProductsStatus = EStateGeneric.SUCCEEDED;
     });
     builder.addCase(getAllProducts.pending, (state, action) => {

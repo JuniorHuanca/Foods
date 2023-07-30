@@ -14,13 +14,13 @@ import {
   occasionsTypes,
 } from "@/shared/data/types";
 import Instructions from "@/components/NewRecipe/Instructions";
+import { useSelector } from "react-redux";
+import { selectAllProducts } from "@/states/productsSlice";
 type Props = {};
 
 const NewRecipe = (props: Props) => {
-  // const initialValues = {
-  //   title: "",
-  //   summary: "",
-  // };
+  const products = useSelector(selectAllProducts);
+  const [image, setImage] = useState<string | null>(null);
 
   const initialValues = {
     cheap: false,
@@ -63,13 +63,21 @@ const NewRecipe = (props: Props) => {
     id: Yup.number().required().integer(),
     title: Yup.string().required().trim(),
     summary: Yup.string().required().trim(),
-    image: Yup.string().required().trim(),
+    image: Yup.mixed()
+      .required("Es necesario seleccionar una imagen")
+      .test("fileType", "The file must be an image.", (value) => {
+        return value && (value as File).type.startsWith("image/");
+      })
+      .test("fileSize", "The image size is too large.", (value) => {
+        return value && (value as File).size <= 5242880; // 5 MB (in bytes)
+      }),
     cuisines: Yup.array().min(1).required(),
     dishTypes: Yup.array().min(1).required(),
     diets: Yup.array().min(1).required(),
     occasions: Yup.array().min(1).required(),
     analyzedInstructions: Yup.array().min(1).required(),
   });
+
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -80,12 +88,32 @@ const NewRecipe = (props: Props) => {
     { resetForm }: { resetForm: () => void }
   ) {
     try {
-    } catch (error) {}
+      const food = { ...values, image };
+      localStorage.setItem("foods", JSON.stringify([...products, food]));
+      setImage(null);
+      resetForm();
+    } catch (error) {
+      console.log(error);
+    }
   }
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    formik.setFieldError("image", "");
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+      formik.setFieldValue("image", file);
+    }
+  };
   return (
     <Layout>
       <div className="flex flex-col min-h-[80vh] bg-black/50">
-        <h1 className="text-3xl font-bold text-center pb-4 text-white">New Recipe</h1>
+        <h1 className="text-3xl font-bold text-center pb-4 text-white">
+          New Recipe
+        </h1>
         <form
           onSubmit={formik.handleSubmit}
           className="flex flex-col items-center justify-center"
@@ -93,7 +121,30 @@ const NewRecipe = (props: Props) => {
           <div className="flex flex-col gap-2 p-1 md:p-4 xl:p-5 bg-white/70 dark:bg-black/70 md:[60%] lg:w-[50%] rounded-md">
             <Input formik={formik} fieldName="title" />
             <Input formik={formik} fieldName="summary" />
-            <Input formik={formik} fieldName="image" />
+            <div>
+              <div className="flex justify-between">
+                <label className="capitalize p-2">Image:</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  onBlur={formik.handleBlur}
+                />
+              </div>
+              {formik.touched.image && formik.errors.image && (
+                <div className="text-red-500">* {formik.errors.image}</div>
+              )}
+              {image && (
+                <div>
+                  <h2>Vista previa:</h2>
+                  <img
+                    src={image}
+                    alt="Vista previa"
+                    style={{ width: "300px", height: "auto" }}
+                  />
+                </div>
+              )}
+            </div>
             <Options
               formik={formik}
               items={cuisinesTypes}
