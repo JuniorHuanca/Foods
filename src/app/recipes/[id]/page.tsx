@@ -19,7 +19,7 @@ type Props = {
 };
 
 const Detail = ({ params }: Props) => {
-  const itemslocalStorage = localStorage.getItem("foods");
+  const itemslocalStorage = localStorage?.getItem("foods");
   const items: IFoodAPI[] = itemslocalStorage
     ? JSON.parse(itemslocalStorage)
     : [];

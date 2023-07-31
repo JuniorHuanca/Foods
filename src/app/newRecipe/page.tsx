@@ -89,7 +89,7 @@ const NewRecipe = (props: Props) => {
   ) {
     try {
       const food = { ...values, image };
-      localStorage.setItem("foods", JSON.stringify([...products, food]));
+      localStorage?.setItem("foods", JSON.stringify([...products, food]));
       setImage(null);
       resetForm();
     } catch (error) {

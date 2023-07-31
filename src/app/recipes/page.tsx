@@ -29,16 +29,6 @@ const Products = ({
 }) => {
   const products = useSelector(selectAllProducts);
   const productsStatus = useSelector(selectAllProductsStatus);
-  // const [test, setTest] = useState(() => {
-  //   try {
-  //     const productsLocaleStorage = localStorage.getItem("products");
-  //     return productsLocaleStorage
-  //       ? JSON.parse(productsLocaleStorage)
-  //       : products;
-  //   } catch (error) {
-  //     return products;
-  //   }
-  // });
   const [currentPage, setCurrentPage] = useState<number>(
     searchParams?.page ? parseInt(searchParams?.page) : 1
   );
@@ -51,7 +41,6 @@ const Products = ({
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    // localStorage.setItem("products", JSON.stringify(test));
     setCurrentPage(searchParams?.page ? parseInt(searchParams?.page) : 1);
     (async () => {
       if (productsStatus === EStateGeneric.IDLE) {

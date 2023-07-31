@@ -35,7 +35,7 @@ type typesState = {
   allProductsStatus: EStateGeneric;
   oneProductStatus: EStateGeneric;
 };
-const foodsLocaleStorage = localStorage.getItem("foods");
+const foodsLocaleStorage = typeof window !== "undefined" ? localStorage.getItem("foods"): "";
 const initialState = {
   products: [],
   allProducts: [],
