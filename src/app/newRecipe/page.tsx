@@ -16,6 +16,7 @@ import {
 import Instructions from "@/components/NewRecipe/Instructions";
 import { useSelector } from "react-redux";
 import { selectAllProducts } from "@/states/productsSlice";
+import { toast } from "sonner";
 type Props = {};
 
 const NewRecipe = (props: Props) => {
@@ -89,7 +90,7 @@ const NewRecipe = (props: Props) => {
   ) {
     try {
       const food = { ...values, image };
-      localStorage?.setItem("foods", JSON.stringify([...products, food]));
+      toast.success("recipe in queue")
       setImage(null);
       resetForm();
     } catch (error) {
