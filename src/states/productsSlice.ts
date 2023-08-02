@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getProductByApi, getProductsByApi } from "./productsApi";
+import { getProductByApi, getProductsByApi, getProductsByNameByApi } from "./productsApi";
 import { EStateGeneric, IFoodAPI } from "@/shared/types";
 import { RootState } from "./store";
 
@@ -8,6 +8,18 @@ export const getAllProducts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await getProductsByApi();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getAllProductsByName = createAsyncThunk(
+  "products/getAllProductsByName",
+  async (name: string, { rejectWithValue }) => {
+    try {
+      const response = await getProductsByNameByApi(name);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -144,6 +156,18 @@ const productsSlice = createSlice({
     });
     builder.addCase(getOneProduct.rejected, (state, action) => {
       state.oneProductStatus = EStateGeneric.FAILED;
+    });
+
+    builder.addCase(getAllProductsByName.fulfilled, (state, action) => {
+      state.products = action.payload
+      state.allProducts = action.payload
+      state.allProductsStatus = EStateGeneric.SUCCEEDED;
+    });
+    builder.addCase(getAllProductsByName.pending, (state, action) => {
+      state.allProductsStatus = EStateGeneric.PENDING;
+    });
+    builder.addCase(getAllProductsByName.rejected, (state, action) => {
+      state.allProductsStatus = EStateGeneric.FAILED;
     });
   },
 });

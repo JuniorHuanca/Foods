@@ -1,6 +1,6 @@
 "use client";
 import { dietTypes } from "@/shared/data/types";
-import { filterByDiet, sortByName, sortByScore } from "@/states/productsSlice";
+import { filterByDiet, getAllProductsByName, sortByName, sortByScore } from "@/states/productsSlice";
 import { useAppDispatch } from "@/states/store";
 import { ChangeEvent, useState } from "react";
 import RadioSelector from "./RadioSelector";
@@ -16,6 +16,7 @@ const Filters = (props: Props) => {
     healthScore: false,
     dietType: false,
   };
+  const [search, setSearch] = useState<string>("");
   const [dropdown, setDropdown] = useState<{ [key: string]: boolean }>({
     ...initialDropdown,
   });
@@ -60,10 +61,18 @@ const Filters = (props: Props) => {
     router.push(`/recipes`);
   };
 
+  const handleSearch = () => {
+    dispatch(getAllProductsByName(search));
+    setSearch("");
+  }
   const alphabetical = ["atoz", "ztoa"];
   const healthScore = ["asc", "desc"];
   return (
     <div className="flex flex-wrap w-full justify-around items-center text-xl py-2 gap-2 bg-black/50">
+      <div>
+        <input className="p-1 rounded-s-md ring-2 ring-green-600" type="text" placeholder="search" value={search} onChange={(e) => setSearch(e.target.value)} />
+        <button className="p-1 bg-green-600 rounded-e-md ring-2 ring-green-600 hover:ring-green-700" onClick={handleSearch} type="button">search</button>
+      </div>
       <RadioSelector
         active={dropdown.alphabetical}
         setActive={() =>

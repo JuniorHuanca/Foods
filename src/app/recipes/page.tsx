@@ -6,7 +6,7 @@ import Loader from "@/components/Loader/Loader";
 import Pagination from "@/components/Pagination";
 import { EStateGeneric } from "@/shared/types";
 import {
-  // cleanUpProducts,
+  cleanUpProducts,
   getAllProducts,
   selectAllProducts,
   selectAllProductsStatus,
