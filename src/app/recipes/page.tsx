@@ -48,7 +48,9 @@ const Products = ({
       }
     })();
     return () => {
-      dispatch(cleanUpProducts());
+      // if (productsStatus === EStateGeneric.SUCCEEDED && isEmtpy) {
+      //   dispatch(cleanUpProducts());
+      // }
     };
   }, [searchParams]);
   return (
