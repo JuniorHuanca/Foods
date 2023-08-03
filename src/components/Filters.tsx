@@ -63,6 +63,7 @@ const Filters = (props: Props) => {
 
   const handleSearch = () => {
     dispatch(getAllProductsByName(search));
+    router.push(`/recipes`);
     setSearch("");
   }
   const alphabetical = ["atoz", "ztoa"];
