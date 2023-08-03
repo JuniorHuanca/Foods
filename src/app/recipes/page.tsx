@@ -48,7 +48,7 @@ const Products = ({
       }
     })();
     return () => {
-      // dispatch(cleanUpProducts());
+      dispatch(cleanUpProducts());
     };
   }, [searchParams]);
   return (
